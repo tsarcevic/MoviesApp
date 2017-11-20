@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/root"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/movie_image"
         android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp" />
 
@@ -15,18 +16,19 @@
         android:id="@+id/movie_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/movie_image"
         android:gravity="center"
         tools:text="Naziv filma" />
 
     <LinearLayout
+        android:id="@+id/movie_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/movie_name"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/movie_image">
 
         <TextView
@@ -49,5 +51,15 @@
             tools:text="Rating" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/movie_plot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/movie_linear"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/movie_image"
+        android:gravity="center"
+        tools:text="Movie Description" />
 
 </RelativeLayout>

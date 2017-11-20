@@ -4,7 +4,7 @@ package com.example.comp.moviesapp.interfaces;
  * Created by COMP on 16.11.2017..
  */
 
-public interface ClickListener {
+public interface MovieClickListener {
 
     void onItemClicked(int id);
 

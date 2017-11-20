@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.comp.moviesapp.R;
 
-public class FavouriteMoviesView extends AppCompatActivity {
+public class WatchListView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_favourite_movies_view);
+        setContentView(R.layout.activity_watchlist_view);
     }
 }
