@@ -1,4 +1,4 @@
-package com.example.comp.moviesapp.ui.favourite_movies;
+package com.example.comp.moviesapp.ui.movies_watchlist;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

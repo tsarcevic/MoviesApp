@@ -1,4 +1,4 @@
-package com.example.comp.moviesapp.ui.all_movies;
+package com.example.comp.moviesapp.ui.movies_watchlist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,7 +20,7 @@ import butterknife.OnLongClick;
  * Created by COMP on 20.11.2017..
  */
 
-class AllMoviesHolder extends RecyclerView.ViewHolder {
+class WatchListHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.root)
     ViewGroup rootView;
@@ -40,21 +40,29 @@ class AllMoviesHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.movie_plot)
     TextView moviePlot;
 
+    @BindView(R.id.movie_watched)
+    TextView movieWatched;
+
     @BindColor(R.color.white)
     int white;
 
     @BindColor(R.color.gray)
     int gray;
 
+    @BindColor(R.color.green)
+    int green;
+
+    @BindColor(R.color.red)
+    int red;
+
     private String id;
 
     MovieClickListener movieClickListener;
 
-    public AllMoviesHolder(View itemView, MovieClickListener movieClickListener) {
+    public WatchListHolder(View itemView, MovieClickListener movieClickListener) {
         super(itemView);
 
         ButterKnife.bind(this, itemView);
-
         this.movieClickListener = movieClickListener;
     }
 
@@ -66,6 +74,12 @@ class AllMoviesHolder extends RecyclerView.ViewHolder {
             moviePlot.setText(movie.getPlot());
             movieRating.setText(movie.getImbdRating());
             movieYear.setText(movie.getYear());
+
+            if (movie.isWatched()) {
+                movieWatched.setBackgroundColor(green);
+            } else {
+                movieWatched.setBackgroundColor(red);
+            }
         }
     }
 

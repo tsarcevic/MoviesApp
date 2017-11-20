@@ -1,6 +1,6 @@
 package com.example.comp.moviesapp.presentation;
 
-import com.example.comp.moviesapp.ui.favourite_movies.WatchListInterface;
+import com.example.comp.moviesapp.ui.movies_watchlist.WatchListInterface;
 
 /**
  * Created by COMP on 16.11.2017..

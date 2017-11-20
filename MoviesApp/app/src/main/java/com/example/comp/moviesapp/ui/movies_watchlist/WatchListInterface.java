@@ -1,4 +1,4 @@
-package com.example.comp.moviesapp.ui.favourite_movies;
+package com.example.comp.moviesapp.ui.movies_watchlist;
 
 /**
  * Created by COMP on 16.11.2017..

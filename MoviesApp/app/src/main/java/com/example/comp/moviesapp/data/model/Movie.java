@@ -1,12 +1,15 @@
 package com.example.comp.moviesapp.data.model;
 
+import com.example.comp.moviesapp.utils.StringUtils;
 import com.google.gson.annotations.SerializedName;
+
+import io.realm.RealmObject;
 
 /**
  * Created by COMP on 16.11.2017..
  */
 
-public class Movie {
+public class Movie extends RealmObject {
 
     @SerializedName("imbdID")
     private String id;
@@ -30,6 +33,8 @@ public class Movie {
     @SerializedName("Production")
     private String production;
 
+    private boolean watched;
+
     public Movie(String id, String title, int year, String runtime, String genre, String plot, String actors, String poster, int imbdRating, String boxOffice, String production) {
         this.id = id;
         this.title = title;
@@ -44,12 +49,20 @@ public class Movie {
         this.production = production;
     }
 
+    public boolean isWatched() {
+        return watched;
+    }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
+    }
+
     public String getId() {
-        return id;
+        return StringUtils.getValueOrEmpty(id);
     }
 
     public String getTitle() {
-        return title;
+        return StringUtils.getValueOrEmpty(title);
     }
 
     public int getYear() {
@@ -57,23 +70,23 @@ public class Movie {
     }
 
     public String getRuntime() {
-        return runtime;
+        return StringUtils.getValueOrEmpty(runtime);
     }
 
     public String getGenre() {
-        return genre;
+        return StringUtils.getValueOrEmpty(genre);
     }
 
     public String getPlot() {
-        return plot;
+        return StringUtils.getValueOrEmpty(plot);
     }
 
     public String getActors() {
-        return actors;
+        return StringUtils.getValueOrEmpty(actors);
     }
 
     public String getPoster() {
-        return poster;
+        return StringUtils.getValueOrEmpty(poster);
     }
 
     public int getImbdRating() {
@@ -81,10 +94,10 @@ public class Movie {
     }
 
     public String getBoxOffice() {
-        return boxOffice;
+        return StringUtils.getValueOrEmpty(boxOffice);
     }
 
     public String getProduction() {
-        return production;
+        return StringUtils.getValueOrEmpty(production);
     }
 }

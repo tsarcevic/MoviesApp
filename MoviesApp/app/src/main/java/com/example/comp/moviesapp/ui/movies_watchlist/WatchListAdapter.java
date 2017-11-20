@@ -1,4 +1,4 @@
-package com.example.comp.moviesapp.ui.all_movies;
+package com.example.comp.moviesapp.ui.movies_watchlist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,15 +15,11 @@ import java.util.List;
  * Created by COMP on 20.11.2017..
  */
 
-public class AllMoviesAdapter extends RecyclerView.Adapter<AllMoviesHolder> {
+public class WatchListAdapter extends RecyclerView.Adapter<WatchListHolder> {
 
-    private List<Movie> moviesList;
+    List<Movie> moviesList;
 
     MovieClickListener movieClickListener;
-
-    public void setMovieClickListener(MovieClickListener movieClickListener) {
-        this.movieClickListener = movieClickListener;
-    }
 
     public void setMoviesList(List<Movie> moviesList) {
         this.moviesList.clear();
@@ -31,19 +27,23 @@ public class AllMoviesAdapter extends RecyclerView.Adapter<AllMoviesHolder> {
         notifyDataSetChanged();
     }
 
+    public void setMovieClickListener(MovieClickListener movieClickListener) {
+        this.movieClickListener = movieClickListener;
+    }
+
     public List<Movie> getMoviesList() {
         return moviesList;
     }
 
     @Override
-    public AllMoviesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WatchListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View movieView = layoutInflater.inflate(R.layout.item_movie, parent, false);
-        return new AllMoviesHolder(movieView, movieClickListener);
+        View movieView = layoutInflater.inflate(R.layout.item_movie_watchlist, parent, false);
+        return new WatchListHolder(movieView, movieClickListener);
     }
 
     @Override
-    public void onBindViewHolder(AllMoviesHolder holder, int position) {
+    public void onBindViewHolder(WatchListHolder holder, int position) {
         Movie movie = moviesList.get(position);
 
         holder.setMovieInfo(movie);
