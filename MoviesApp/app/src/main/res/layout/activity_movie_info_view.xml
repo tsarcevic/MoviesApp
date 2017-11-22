@@ -17,14 +17,15 @@
             android:background="@color/colorPrimary"
             android:gravity="center"
             tools:text="Movie name"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
 
         <ImageView
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back_button"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|start"
             android:padding="16dp"/>
 
     </FrameLayout>

@@ -3,4 +3,8 @@
     <string name="movies_search">Enter movie</string>
     <string name="find_movies">Find movies</string>
     <string name="watch_list">Watchlist</string>
+    <string name="blank_error">You left blank field!</string>
+    <string name="connection_error">Data fetching error</string>
+    <string name="dialog_message">Are you sure you want to add movie to watchlist?</string>
+    <string name="movie_added">You added movie to your watchlist!</string>
 </resources>

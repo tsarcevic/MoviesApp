@@ -6,7 +6,7 @@ package com.example.comp.moviesapp.interfaces;
 
 public interface MovieClickListener {
 
-    void onItemClicked(String id);
+    void onItemClicked(int id);
 
-    void onItemLongClicked(String id);
+    void onItemLongClicked(int id);
 }

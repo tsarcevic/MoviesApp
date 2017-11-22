@@ -1,4 +1,4 @@
-package com.example.comp.moviesapp.ui.all_movies;
+package com.example.comp.moviesapp.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,7 +20,7 @@ import butterknife.OnLongClick;
  * Created by COMP on 20.11.2017..
  */
 
-class AllMoviesHolder extends RecyclerView.ViewHolder {
+class MoviesHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.root)
     ViewGroup rootView;
@@ -46,11 +46,11 @@ class AllMoviesHolder extends RecyclerView.ViewHolder {
     @BindColor(R.color.gray)
     int gray;
 
-    private String id;
+    private int id;
 
     MovieClickListener movieClickListener;
 
-    public AllMoviesHolder(View itemView, MovieClickListener movieClickListener) {
+    public MoviesHolder(View itemView, MovieClickListener movieClickListener) {
         super(itemView);
 
         ButterKnife.bind(this, itemView);
@@ -64,7 +64,7 @@ class AllMoviesHolder extends RecyclerView.ViewHolder {
 
             movieName.setText(movie.getTitle());
             moviePlot.setText(movie.getPlot());
-            movieRating.setText(movie.getImbdRating());
+            movieRating.setText(movie.getVote_average());
             movieYear.setText(movie.getYear());
         }
     }
@@ -77,9 +77,13 @@ class AllMoviesHolder extends RecyclerView.ViewHolder {
     }
 
     @OnLongClick
-    public void movieLongClicked() {
+    public boolean movieLongClicked() {
         if (movieClickListener != null) {
             movieClickListener.onItemLongClicked(id);
+
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -11,17 +11,12 @@ import java.util.List;
 
 public class MovieResponse {
 
-    private int totalResults;
-    private boolean response;
-    @SerializedName("Search")
+    private int page;
+    @SerializedName("results")
     private List<Movie> moviesList;
 
     public int getTotalResults() {
-        return totalResults;
-    }
-
-    public boolean isResponse() {
-        return response;
+        return page;
     }
 
     public List<Movie> getMoviesList() {
