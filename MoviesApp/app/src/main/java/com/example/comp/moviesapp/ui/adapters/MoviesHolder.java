@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.comp.moviesapp.R;
 import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.interfaces.MovieClickListener;
+import com.example.comp.moviesapp.utils.ImageUtils;
 
 import butterknife.BindColor;
 import butterknife.BindView;
@@ -60,8 +61,8 @@ class MoviesHolder extends RecyclerView.ViewHolder {
 
     public void setMovieInfo(Movie movie) {
         if (movie != null) {
-            id = movie.getId();
 
+            ImageUtils.setPicture(movieImage, "http://www.sintalent.com/wp-content/uploads/2015/08/film-roll.jpg");
             movieName.setText(movie.getTitle());
             moviePlot.setText(movie.getPlot());
             movieRating.setText(movie.getVote_average());
