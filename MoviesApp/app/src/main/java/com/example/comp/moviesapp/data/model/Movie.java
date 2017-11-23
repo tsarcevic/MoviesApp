@@ -11,22 +11,20 @@ import io.realm.RealmObject;
 public class Movie extends RealmObject {
 
     private int id;
-    @SerializedName("original_title")
     private String title;
     @SerializedName("release_date")
-    private int year;
+    private String year;
     private int runtime;
     @SerializedName("overview")
     private String plot;
     @SerializedName("poster_path")
     private String poster;
     private int vote_average;
-    private int revenue;
 
     public Movie() {
     }
 
-    public Movie(int id, String title, int year, int runtime, String plot, String poster, int vote_average, int revenue) {
+    public Movie(int id, String title, String year, int runtime, String plot, String poster, int vote_average) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -34,7 +32,6 @@ public class Movie extends RealmObject {
         this.plot = plot;
         this.poster = poster;
         this.vote_average = vote_average;
-        this.revenue = revenue;
     }
 
     public int getId() {
@@ -45,7 +42,7 @@ public class Movie extends RealmObject {
         return title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -63,9 +60,5 @@ public class Movie extends RealmObject {
 
     public int getVote_average() {
         return vote_average;
-    }
-
-    public int getRevenue() {
-        return revenue;
     }
 }

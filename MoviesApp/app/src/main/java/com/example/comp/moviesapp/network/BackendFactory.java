@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BackendFactory {
 
-    private static String BASE_URL = "https://api.themoviedb.org/3";
+    private static String BASE_URL = "https://api.themoviedb.org/3/movie/";
 
     private static Retrofit retrofit;
 
@@ -18,12 +18,9 @@ public class BackendFactory {
 
     private static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
-
-            OkHttpClient httpClient = new OkHttpClient.Builder().build();
-
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .client(httpClient)
+                    .client(new OkHttpClient())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
@@ -35,7 +32,6 @@ public class BackendFactory {
         if (apiService == null) {
             apiService = getRetrofitInstance().create(ApiService.class);
         }
-
         return apiService;
     }
 
