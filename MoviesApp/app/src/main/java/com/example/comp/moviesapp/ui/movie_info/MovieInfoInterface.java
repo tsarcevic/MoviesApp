@@ -8,10 +8,29 @@ public interface MovieInfoInterface {
 
     interface View {
 
+        void showNoIdError();
+
+        void showNoMovieDatabaseError();
+
+        void showMoviePicture(String poster);
+
+        void showMovieTitle(String title);
+
+        void showMoviePlot(String plot);
+
+        void showMovieYear(String year);
+
+        void showMovieVote(double vote_average);
+
+        void showConnectionError();
     }
 
     interface Presenter {
 
         void setView(View view);
+
+        void viewReadyFromAllMovies(int intExtra);
+
+        void viewReadyFromWatchlist(int intExtra);
     }
 }

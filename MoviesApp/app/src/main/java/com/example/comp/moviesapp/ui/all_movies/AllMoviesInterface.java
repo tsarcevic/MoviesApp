@@ -14,9 +14,9 @@ public interface AllMoviesInterface {
 
         void showMoviesList(List<Movie> moviesList);
 
-        void searchedTermError();
+        void onSearchedTermError();
 
-        void searchedTermSuccess();
+        void searchedTermSuccess(String movieName);
 
         void showConnectionError();
 
@@ -25,6 +25,8 @@ public interface AllMoviesInterface {
         void movieAdded();
 
         void showAddDialog(int id);
+
+        void navigateToWatchlist();
     }
 
     interface Presenter {
@@ -35,12 +37,16 @@ public interface AllMoviesInterface {
 
         void fetchData();
 
-        void itemClicked(int id);
+        void onItemClicked(int id);
 
-        void itemLongClicked(int id);
+        void onItemLongClicked(int id);
 
         void onMovieChosen(int id);
 
         void viewReady();
+
+        void onSearchedTermSuccess(String movieName);
+
+        void watchlistClicked();
     }
 }

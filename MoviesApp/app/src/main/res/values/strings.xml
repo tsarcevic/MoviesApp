@@ -5,6 +5,11 @@
     <string name="watch_list">Watchlist</string>
     <string name="blank_error">You left blank field!</string>
     <string name="connection_error">Data fetching error</string>
-    <string name="dialog_message">Are you sure you want to add movie to watchlist?</string>
+    <string name="dialog_add_message">Are you sure you want to add movie to watchlist?</string>
+    <string name="dialog_remove_message">Are you sure you want to delete movie from watchlist?</string>
     <string name="movie_added">You added movie to your watchlist!</string>
+    <string name="no_movies_database">There are no movies in database!</string>
+    <string name="movie_deleted">You deleted movie from database!</string>
+    <string name="no_id_error">There is no movie with that ID!</string>
+    <string name="database_error">There was error with the ID in database!</string>
 </resources>

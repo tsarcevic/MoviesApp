@@ -1,5 +1,6 @@
 package com.example.comp.moviesapp.network;
 
+import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.data.response.MovieResponse;
 
 import retrofit2.Callback;
@@ -9,7 +10,10 @@ import retrofit2.Callback;
  */
 
 public interface NetworkInterface {
+
     void getTopRatedMovies(Callback<MovieResponse> movieListCallback);
 
-    void getMovieById(Callback<MovieResponse> movieCallback, int id);
+    void getMovieById(Callback<Movie> movieCallback, int id);
+
+    void getMovieByName(Callback<MovieResponse> movieByNameCallback, String movieName);
 }

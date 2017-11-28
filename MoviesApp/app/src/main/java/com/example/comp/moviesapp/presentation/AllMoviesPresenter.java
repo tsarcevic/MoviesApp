@@ -1,7 +1,5 @@
 package com.example.comp.moviesapp.presentation;
 
-import android.support.annotation.NonNull;
-
 import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.data.response.MovieResponse;
 import com.example.comp.moviesapp.database.DatabaseInterface;
@@ -47,9 +45,9 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
     public void checkInput(String text) {
         String helpString = text.trim();
         if (!StringUtils.checkIfStringNotEmpty(helpString)) {
-            view.searchedTermError();
+            view.onSearchedTermError();
         } else {
-            view.searchedTermSuccess();
+            view.searchedTermSuccess(helpString);
         }
     }
 
@@ -59,12 +57,16 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
     }
 
     @Override
+    public void onSearchedTermSuccess(String movieName) {
+        networkInterface.getMovieByName(getMovieByNameCallback(), movieName);
+    }
+
+    @Override
     public void onMovieChosen(int id) {
         networkInterface.getMovieById(getMovieCallback(), id);
     }
 
-    @NonNull
-    private Callback<MovieResponse> getMoviesListCallback() {
+    protected Callback<MovieResponse> getMovieByNameCallback() {
         return new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
@@ -81,18 +83,35 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
         };
     }
 
-    private Callback<MovieResponse> getMovieCallback() {
+    protected Callback<MovieResponse> getMoviesListCallback() {
         return new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if (response != null && response.body() != null && response.body().getMoviesList().get(0) != null) {
-                    Movie movie = response.body().getMoviesList().get(0);
-                    addMovie(movie);
+                if (response != null && response.body() != null && response.body().getMoviesList() != null) {
+                    moviesList = response.body().getMoviesList();
+                    view.showMoviesList(moviesList);
                 }
             }
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
+                view.showConnectionError();
+            }
+        };
+    }
+
+    protected Callback<Movie> getMovieCallback() {
+        return new Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                if (response != null && response.body() != null) {
+                    Movie movie = response.body();
+                    addMovie(movie);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
                 view.showConnectionError();
             }
         };
@@ -104,12 +123,17 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
     }
 
     @Override
-    public void itemClicked(int id) {
+    public void onItemClicked(int id) {
         view.navigateToMovieInfo(id);
     }
 
     @Override
-    public void itemLongClicked(int id) {
+    public void onItemLongClicked(int id) {
         view.showAddDialog(id);
+    }
+
+    @Override
+    public void watchlistClicked() {
+        view.navigateToWatchlist();
     }
 }

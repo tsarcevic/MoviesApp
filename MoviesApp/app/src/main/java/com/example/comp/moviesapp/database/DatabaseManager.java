@@ -2,6 +2,8 @@ package com.example.comp.moviesapp.database;
 
 import com.example.comp.moviesapp.data.model.Movie;
 
+import java.util.List;
+
 /**
  * Created by COMP on 21.11.2017..
  */
@@ -28,5 +30,20 @@ public class DatabaseManager implements DatabaseInterface {
         if (movie != null) {
             databaseHelper.addMovie(movie);
         }
+    }
+
+    @Override
+    public List<Movie> fetchData() {
+        return databaseHelper.getAllMovies();
+    }
+
+    @Override
+    public void deleteMovie(int id) {
+        databaseHelper.removeMovie(id);
+    }
+
+    @Override
+    public Movie getMovieById(int intExtra) {
+        return databaseHelper.findMovie(intExtra);
     }
 }

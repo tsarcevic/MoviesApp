@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.example.comp.moviesapp.network.NetworkManager;
 import com.example.comp.moviesapp.presentation.AllMoviesPresenter;
 import com.example.comp.moviesapp.ui.adapters.MoviesAdapter;
 import com.example.comp.moviesapp.ui.movie_info.MovieInfoActivity;
+import com.example.comp.moviesapp.ui.movies_watchlist.WatchListActivity;
 import com.example.comp.moviesapp.utils.DialogUtils;
 
 import java.util.List;
@@ -55,10 +57,11 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_movies_view);
 
+        Log.d("START2","AllMovies");
+        setUI();
+
         presenter = new AllMoviesPresenter(NetworkManager.getInstance(), DatabaseManager.getDatabaseInstance());
         presenter.setView(this);
-
-        setUI();
         presenter.viewReady();
     }
 
@@ -80,13 +83,13 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     }
 
     @OnClick(R.id.verify_text)
-    public void onVerifyCliked() {
+    public void onVerifyClicked() {
         presenter.checkInput(searchText.getText().toString());
     }
 
     @Override
-    public void searchedTermSuccess() {
-        presenter.fetchData();
+    public void searchedTermSuccess(String movieName) {
+        presenter.onSearchedTermSuccess(movieName);
     }
 
     @Override
@@ -96,17 +99,22 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     @Override
     public void showAddDialog(int id) {
-        DialogUtils.showDialog(this, id, this);
+        DialogUtils.showAddDialog(this, id, this);
+    }
+
+    @OnClick(R.id.watchlist_button)
+    public void watchlistClicked() {
+        presenter.watchlistClicked();
     }
 
     @Override
     public void onItemClicked(int id) {
-        presenter.itemClicked(id);
+        presenter.onItemClicked(id);
     }
 
     @Override
     public void onItemLongClicked(int id) {
-        presenter.itemLongClicked(id);
+        presenter.onItemLongClicked(id);
     }
 
     @Override
@@ -115,7 +123,7 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     }
 
     @Override
-    public void searchedTermError() {
+    public void onSearchedTermError() {
         searchText.setError(blankField);
     }
 
@@ -126,6 +134,12 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     @Override
     public void navigateToMovieInfo(int id) {
-        startActivity(MovieInfoActivity.getLaunchIntent(this, id));
+        int flagFromAllMovies = 1;
+        startActivity(MovieInfoActivity.getLaunchIntent(this, id, flagFromAllMovies));
+    }
+
+    @Override
+    public void navigateToWatchlist() {
+        startActivity(WatchListActivity.getLaunchIntent(this));
     }
 }

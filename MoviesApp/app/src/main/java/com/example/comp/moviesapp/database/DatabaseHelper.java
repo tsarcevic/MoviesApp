@@ -44,8 +44,8 @@ public class DatabaseHelper {
         }
     }
 
-    public void removeMovie(String id) {
-        if (!id.isEmpty()) {
+    public void removeMovie(int id) {
+        if (id != 0) {
             realm.beginTransaction();
 
             Movie movieToDelete = realm.copyFromRealm(realm.where(Movie.class).equalTo("id", id).findFirst());
@@ -56,5 +56,20 @@ public class DatabaseHelper {
 
             realm.commitTransaction();
         }
+    }
+
+    public Movie findMovie(int id) {
+        Movie queriedMovie = new Movie();
+
+        if (id != 0) {
+            realm.beginTransaction();
+
+            queriedMovie = realm.copyFromRealm(realm.where(Movie.class).equalTo("id", id).findFirst());
+
+            realm.commitTransaction();
+        }
+
+        return queriedMovie;
+
     }
 }

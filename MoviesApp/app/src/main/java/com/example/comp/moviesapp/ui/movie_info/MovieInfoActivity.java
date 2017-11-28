@@ -4,23 +4,114 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.comp.moviesapp.R;
+import com.example.comp.moviesapp.database.DatabaseManager;
+import com.example.comp.moviesapp.network.NetworkManager;
+import com.example.comp.moviesapp.presentation.MovieInfoPresenter;
+import com.example.comp.moviesapp.utils.ImageUtils;
 
-public class MovieInfoActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInterface.View {
 
     private static String KEY_ID_MOVIE_INFO = "id";
+    private static String KEY_FLAG_MOVIE_INFO = "flag";
+
+    @BindView(R.id.movie_poster)
+    ImageView moviePoster;
+
+    @BindView(R.id.movie_name)
+    TextView movieName;
+
+    @BindView(R.id.movie_year)
+    TextView movieYear;
+
+    @BindView(R.id.movie_plot)
+    TextView moviePlot;
+
+    @BindView(R.id.movie_rating)
+    TextView movieRating;
+
+    MovieInfoInterface.Presenter presenter;
+
+    public static Intent getLaunchIntent(Context from, int id, int flag) {
+        Intent intent = new Intent(from, MovieInfoActivity.class);
+        intent.putExtra(KEY_ID_MOVIE_INFO, id);
+        intent.putExtra(KEY_FLAG_MOVIE_INFO, flag);
+
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info_view);
+
+        presenter = new MovieInfoPresenter(NetworkManager.getInstance(), DatabaseManager.getDatabaseInstance());
+        presenter.setView(this);
+
+        setUI();
+        getExtras();
     }
 
-    public static Intent getLaunchIntent(Context from, int id) {
-        Intent intent = new Intent(from, MovieInfoActivity.class);
-        intent.putExtra(KEY_ID_MOVIE_INFO, id);
+    private void setUI() {
+        ButterKnife.bind(this);
+    }
 
-        return intent;
+    private void getExtras() {
+        if (getIntent().hasExtra(KEY_FLAG_MOVIE_INFO)) {
+            if (getIntent().hasExtra(KEY_ID_MOVIE_INFO)) {
+                if (getIntent().getIntExtra(KEY_FLAG_MOVIE_INFO, -1) == 1) {
+                    presenter.viewReadyFromAllMovies(getIntent().getIntExtra(KEY_ID_MOVIE_INFO, -1));
+                } else {
+                    presenter.viewReadyFromWatchlist(getIntent().getIntExtra(KEY_ID_MOVIE_INFO, -1));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void showNoIdError() {
+        Toast.makeText(this, R.string.no_id_error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showNoMovieDatabaseError() {
+        Toast.makeText(this, R.string.database_error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showConnectionError() {
+        Toast.makeText(this, R.string.connection_error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMoviePicture(String poster) {
+        ImageUtils.setPicture(moviePoster, "https://searchengineland.com/figz/wp-content/seloads/2015/08/movie-film-video-production-ss-1920-800x450.jpg");
+    }
+
+    @Override
+    public void showMovieTitle(String title) {
+        movieName.setText(title);
+    }
+
+    @Override
+    public void showMoviePlot(String plot) {
+        moviePlot.setText(plot);
+    }
+
+    @Override
+    public void showMovieYear(String year) {
+        movieYear.setText(year);
+    }
+
+    @Override
+    public void showMovieVote(double vote_average) {
+        movieRating.setText(String.valueOf(vote_average));
     }
 }

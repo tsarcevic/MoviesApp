@@ -1,5 +1,6 @@
 package com.example.comp.moviesapp.network;
 
+import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.data.response.MovieResponse;
 
 import retrofit2.Call;
@@ -13,9 +14,12 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @GET("{movie_id}")
-    Call<MovieResponse> getMovieById(@Path("movie_id") int id, @Query("api_key") String apiKey);
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovieById(@Path("movie_id") int id, @Query("api_key") String apiKey);
 
-    @GET("top_rated")
-    Call<MovieResponse> getTopRatedMovies(@Query("api_key") String apiKey);
+    @GET("movie/top_rated")
+    Call<MovieResponse> getTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int page);
+
+    @GET("search/movie")
+    Call<MovieResponse> getMovieByName(@Query("api_key") String apiKey, @Query("query") String movieName, @Query("page") int page);
 }

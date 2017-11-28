@@ -57,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/movie_linear"
+        android:maxLines="3"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/movie_image"
         android:gravity="center"

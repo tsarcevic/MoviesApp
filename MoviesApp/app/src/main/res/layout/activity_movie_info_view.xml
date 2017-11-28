@@ -16,17 +16,24 @@
             android:layout_gravity="center"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            tools:text="Movie name"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            tools:text="Movie name" />
 
         <ImageView
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_button"
             android:layout_gravity="center_vertical|start"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:src="@drawable/ic_back_button" />
+
+        <ImageView
+            android:id="@+id/watchlist_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:padding="16dp" />
 
     </FrameLayout>
 
@@ -53,36 +60,12 @@
                 tools:text="Year" />
 
             <TextView
-                android:id="@+id/movie_genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                tools:text="Genre" />
-
-            <TextView
-                android:id="@+id/movie_runtime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                tools:text="Runtime" />
-
-            <TextView
                 android:id="@+id/movie_plot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 tools:text="Plot" />
-
-            <TextView
-                android:id="@+id/movie_actors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                tools:text="Actors" />
 
             <TextView
                 android:id="@+id/movie_rating"
@@ -92,24 +75,7 @@
                 android:gravity="center"
                 tools:text="Rating" />
 
-            <TextView
-                android:id="@+id/movie_box_office"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                tools:text="Box Office" />
-
-            <TextView
-                android:id="@+id/movie_production"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                tools:text="Production" />
-
         </LinearLayout>
-        Ł
 
     </ScrollView>
 

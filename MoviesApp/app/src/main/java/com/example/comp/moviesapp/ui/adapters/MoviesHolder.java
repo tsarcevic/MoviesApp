@@ -62,10 +62,12 @@ class MoviesHolder extends RecyclerView.ViewHolder {
     public void setMovieInfo(Movie movie) {
         if (movie != null) {
 
-            ImageUtils.setPicture(movieImage, "http://www.sintalent.com/wp-content/uploads/2015/08/film-roll.jpg");
+            // TODO: 27.11.2017. skontaj kak ide url slike
+            String imageURL = "https://searchengineland.com/figz/wp-content/seloads/2015/08/movie-film-video-production-ss-1920-800x450.jpg";
+            ImageUtils.setPicture(movieImage, imageURL);
             movieName.setText(movie.getTitle());
             moviePlot.setText(movie.getPlot());
-            movieRating.setText(movie.getVote_average());
+            movieRating.setText(String.valueOf(movie.getVote_average()));
             movieYear.setText(movie.getYear());
         }
     }

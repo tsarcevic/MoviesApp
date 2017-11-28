@@ -1,6 +1,7 @@
 package com.example.comp.moviesapp.network;
 
 import com.example.comp.moviesapp.constants.Constants;
+import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.data.response.MovieResponse;
 
 import retrofit2.Callback;
@@ -29,11 +30,16 @@ public class NetworkManager implements NetworkInterface {
 
     @Override
     public void getTopRatedMovies(Callback<MovieResponse> movieListCallback) {
-        apiService.getTopRatedMovies(Constants.API_KEY).enqueue(movieListCallback);
+        apiService.getTopRatedMovies(Constants.API_KEY, 1).enqueue(movieListCallback);
     }
 
     @Override
-    public void getMovieById(Callback<MovieResponse> movieCallback, int id) {
+    public void getMovieById(Callback<Movie> movieCallback, int id) {
         apiService.getMovieById(id, Constants.API_KEY).enqueue(movieCallback);
+    }
+
+    @Override
+    public void getMovieByName(Callback<MovieResponse> movieByNameCallback, String movieName) {
+        apiService.getMovieByName(Constants.API_KEY, movieName, 1).enqueue(movieByNameCallback);
     }
 }
