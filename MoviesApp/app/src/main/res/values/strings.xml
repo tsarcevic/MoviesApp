@@ -12,4 +12,7 @@
     <string name="movie_deleted">You deleted movie from database!</string>
     <string name="no_id_error">There is no movie with that ID!</string>
     <string name="database_error">There was error with the ID in database!</string>
+    <string name="movie_plot">Plot:\n %s</string>
+    <string name="movie_year">Movie released: %s</string>
+    <string name="movie_rating">IMBD rating: %.1f</string>
 </resources>

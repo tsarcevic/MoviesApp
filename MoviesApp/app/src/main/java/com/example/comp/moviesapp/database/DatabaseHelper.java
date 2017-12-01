@@ -36,7 +36,7 @@ public class DatabaseHelper {
         if (movie != null) {
             realm.beginTransaction();
 
-            if (realm.copyFromRealm(realm.where(Movie.class).equalTo("id", movie.getId()).findFirst()) == null) {
+            if (realm.where(Movie.class).equalTo("id", movie.getId()).findFirst() == null) {
                 realm.copyToRealm(movie);
             }
 
@@ -48,7 +48,7 @@ public class DatabaseHelper {
         if (id != 0) {
             realm.beginTransaction();
 
-            Movie movieToDelete = realm.copyFromRealm(realm.where(Movie.class).equalTo("id", id).findFirst());
+            Movie movieToDelete = realm.where(Movie.class).equalTo("id", id).findFirst();
 
             if (movieToDelete != null) {
                 movieToDelete.deleteFromRealm();

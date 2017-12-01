@@ -18,6 +18,7 @@ import com.example.comp.moviesapp.interfaces.DeleteListener;
 import com.example.comp.moviesapp.interfaces.MovieClickListener;
 import com.example.comp.moviesapp.presentation.WatchListPresenter;
 import com.example.comp.moviesapp.ui.adapters.MoviesAdapter;
+import com.example.comp.moviesapp.ui.all_movies.AllMoviesActivity;
 import com.example.comp.moviesapp.ui.movie_info.MovieInfoActivity;
 import com.example.comp.moviesapp.utils.DialogUtils;
 
@@ -25,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class WatchListActivity extends AppCompatActivity implements WatchListInterface.View, MovieClickListener, DeleteListener {
 
@@ -63,6 +65,7 @@ public class WatchListActivity extends AppCompatActivity implements WatchListInt
 
     private void setUI() {
         ButterKnife.bind(this);
+        watchList.setClickable(false);
 
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setMovieClickListener(this);
@@ -71,6 +74,11 @@ public class WatchListActivity extends AppCompatActivity implements WatchListInt
 
         moviesList.setLayoutManager(layoutManager);
         moviesList.setAdapter(moviesAdapter);
+    }
+
+    @OnClick(R.id.film_list)
+    public void onFilmListClicked() {
+        presenter.onFilmListClicked();
     }
 
     @Override
@@ -113,5 +121,10 @@ public class WatchListActivity extends AppCompatActivity implements WatchListInt
     public void navigateToMovieInfo(int id) {
         int flagFromWatchlist = 2;
         startActivity(MovieInfoActivity.getLaunchIntent(this, id, flagFromWatchlist));
+    }
+
+    @Override
+    public void navigateToFilmList() {
+        startActivity(AllMoviesActivity.getLaunchIntent(this));
     }
 }

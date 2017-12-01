@@ -55,6 +55,19 @@ public class WatchListPresenter implements WatchListInterface.Presenter {
     @Override
     public void onDeleteClicked(int id) {
         databaseInterface.deleteMovie(id);
+
+        for (Movie movie : moviesList) {
+            if (id == movie.getId()) {
+                moviesList.remove(movie);
+                view.showMoviesList(moviesList);
+                break;
+            }
+        }
         view.showMovieDeletedInfo();
+    }
+
+    @Override
+    public void onFilmListClicked() {
+        view.navigateToFilmList();
     }
 }

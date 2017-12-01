@@ -1,10 +1,11 @@
 package com.example.comp.moviesapp.ui.all_movies;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,7 +41,7 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     @BindView(R.id.film_list)
     Button filmList;
 
-    @BindView(R.id.watchlist)
+    @BindView(R.id.watchlist_button)
     Button watchList;
 
     @BindView(R.id.movies_list)
@@ -52,12 +53,17 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     MoviesAdapter moviesAdapter;
     AllMoviesInterface.Presenter presenter;
 
+    public static Intent getLaunchIntent(Context from) {
+        Intent intent = new Intent(from, AllMoviesActivity.class);
+
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_movies_view);
 
-        Log.d("START2","AllMovies");
         setUI();
 
         presenter = new AllMoviesPresenter(NetworkManager.getInstance(), DatabaseManager.getDatabaseInstance());
@@ -67,6 +73,8 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     private void setUI() {
         ButterKnife.bind(this);
+
+        filmList.setClickable(false);
 
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setMovieClickListener(this);

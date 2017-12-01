@@ -63,7 +63,12 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
 
     @Override
     public void onMovieChosen(int id) {
-        networkInterface.getMovieById(getMovieCallback(), id);
+        for (Movie movie : moviesList) {
+            if (movie.getId() == id) {
+                addMovie(movie);
+                break;
+            }
+        }
     }
 
     protected Callback<MovieResponse> getMovieByNameCallback() {
@@ -95,23 +100,6 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
 
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
-                view.showConnectionError();
-            }
-        };
-    }
-
-    protected Callback<Movie> getMovieCallback() {
-        return new Callback<Movie>() {
-            @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response) {
-                if (response != null && response.body() != null) {
-                    Movie movie = response.body();
-                    addMovie(movie);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Movie> call, Throwable t) {
                 view.showConnectionError();
             }
         };

@@ -23,6 +23,8 @@ public interface MovieInfoInterface {
         void showMovieVote(double vote_average);
 
         void showConnectionError();
+
+        void navigateBack();
     }
 
     interface Presenter {
@@ -32,5 +34,7 @@ public interface MovieInfoInterface {
         void viewReadyFromAllMovies(int intExtra);
 
         void viewReadyFromWatchlist(int intExtra);
+
+        void onBackClicked();
     }
 }

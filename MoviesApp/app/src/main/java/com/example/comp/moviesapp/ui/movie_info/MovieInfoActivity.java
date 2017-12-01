@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.comp.moviesapp.R;
+import com.example.comp.moviesapp.constants.Constants;
 import com.example.comp.moviesapp.database.DatabaseManager;
 import com.example.comp.moviesapp.network.NetworkManager;
 import com.example.comp.moviesapp.presentation.MovieInfoPresenter;
@@ -16,6 +17,7 @@ import com.example.comp.moviesapp.utils.ImageUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInterface.View {
 
@@ -75,6 +77,16 @@ public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInt
         }
     }
 
+    @OnClick(R.id.back_button)
+    public void backClicked() {
+        presenter.onBackClicked();
+    }
+
+    @Override
+    public void navigateBack() {
+        finish();
+    }
+
     @Override
     public void showNoIdError() {
         Toast.makeText(this, R.string.no_id_error, Toast.LENGTH_SHORT).show();
@@ -92,7 +104,7 @@ public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInt
 
     @Override
     public void showMoviePicture(String poster) {
-        ImageUtils.setPicture(moviePoster, "https://searchengineland.com/figz/wp-content/seloads/2015/08/movie-film-video-production-ss-1920-800x450.jpg");
+        ImageUtils.setPicture(moviePoster, Constants.BASE_URL_PATH + poster);
     }
 
     @Override
@@ -102,16 +114,16 @@ public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInt
 
     @Override
     public void showMoviePlot(String plot) {
-        moviePlot.setText(plot);
+        moviePlot.setText(String.format(getString(R.string.movie_plot), plot));
     }
 
     @Override
     public void showMovieYear(String year) {
-        movieYear.setText(year);
+        movieYear.setText(String.format(getString(R.string.movie_year), year));
     }
 
     @Override
     public void showMovieVote(double vote_average) {
-        movieRating.setText(String.valueOf(vote_average));
+        movieRating.setText(String.format(getString(R.string.movie_rating), vote_average));
     }
 }

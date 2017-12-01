@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/root"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/movie_image"
@@ -56,11 +56,14 @@
         android:id="@+id/movie_plot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/movie_linear"
-        android:maxLines="3"
+        android:layout_below="@id/movie_image"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_toEndOf="@id/movie_image"
         android:gravity="center"
+        android:maxLines="4"
+        android:ellipsize="end"
         tools:text="Movie Description" />
 
 </RelativeLayout>

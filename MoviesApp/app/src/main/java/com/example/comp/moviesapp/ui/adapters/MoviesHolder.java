@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.comp.moviesapp.R;
+import com.example.comp.moviesapp.constants.Constants;
 import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.interfaces.MovieClickListener;
 import com.example.comp.moviesapp.utils.ImageUtils;
@@ -62,8 +63,10 @@ class MoviesHolder extends RecyclerView.ViewHolder {
     public void setMovieInfo(Movie movie) {
         if (movie != null) {
 
+            id = movie.getId();
             // TODO: 27.11.2017. skontaj kak ide url slike
-            String imageURL = "https://searchengineland.com/figz/wp-content/seloads/2015/08/movie-film-video-production-ss-1920-800x450.jpg";
+            String imageURL = Constants.BASE_URL_PATH + movie.getPoster();
+            String imageURL2 = "https://searchengineland.com/figz/wp-content/seloads/2015/08/movie-film-video-production-ss-1920-800x450.jpg";
             ImageUtils.setPicture(movieImage, imageURL);
             movieName.setText(movie.getTitle());
             moviePlot.setText(movie.getPlot());

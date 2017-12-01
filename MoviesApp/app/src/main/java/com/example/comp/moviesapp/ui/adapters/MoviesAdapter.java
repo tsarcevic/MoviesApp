@@ -10,6 +10,7 @@ import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.interfaces.MovieClickListener;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesHolder> implements Serializable {
 
-    private List<Movie> moviesList;
+    private List<Movie> moviesList = new ArrayList<>();
 
     MovieClickListener movieClickListener;
 

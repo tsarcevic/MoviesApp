@@ -89,4 +89,9 @@ public class MovieInfoPresenter implements MovieInfoInterface.Presenter {
         view.showMovieYear(movie.getYear());
         view.showMovieVote(movie.getVote_average());
     }
+
+    @Override
+    public void onBackClicked() {
+        view.navigateBack();
+    }
 }
