@@ -87,9 +87,13 @@ public class WatchListActivity extends AppCompatActivity implements WatchListInt
     }
 
     @Override
-    public void showNoData() {
+    public void showNoDataText() {
         noData.setVisibility(View.VISIBLE);
-        Toast.makeText(this, R.string.no_movies_database, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void hideNoDataText() {
+        noData.setVisibility(View.GONE);
     }
 
     @Override

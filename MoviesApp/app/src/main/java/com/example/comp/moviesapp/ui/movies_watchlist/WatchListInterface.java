@@ -18,11 +18,13 @@ public interface WatchListInterface {
 
         void showDeleteDialog(int id);
 
-        void showNoData();
+        void showNoDataText();
 
         void showMovieDeletedInfo();
 
         void navigateToFilmList();
+
+        void hideNoDataText();
     }
 
     interface Presenter {

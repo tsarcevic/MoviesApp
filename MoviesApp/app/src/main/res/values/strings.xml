@@ -15,4 +15,5 @@
     <string name="movie_plot">Plot:\n %s</string>
     <string name="movie_year">Movie released: %s</string>
     <string name="movie_rating">IMBD rating: %.1f</string>
+    <string name="movie_search_error">No data to show!</string>
 </resources>

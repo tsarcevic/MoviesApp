@@ -36,9 +36,10 @@ public class WatchListPresenter implements WatchListInterface.Presenter {
     private void fetchData() {
         moviesList = databaseInterface.fetchData();
         if (moviesList.isEmpty()) {
-            view.showNoData();
+            view.showNoDataText();
         } else {
             view.showMoviesList(moviesList);
+            view.hideNoDataText();
         }
     }
 

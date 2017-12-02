@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.comp.moviesapp.R;
@@ -43,6 +45,9 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     @BindView(R.id.watchlist_button)
     Button watchList;
+
+    @BindView(R.id.no_data_movie_search)
+    TextView noData;
 
     @BindView(R.id.movies_list)
     RecyclerView moviesList;
@@ -86,8 +91,24 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     }
 
     @Override
-    public void showMoviesList(List<Movie> moviesList) {
-        moviesAdapter.setMoviesList(moviesList);
+    public void showMoviesList(List<Movie> movieList) {
+        moviesList.setVisibility(View.VISIBLE);
+        moviesAdapter.setMoviesList(movieList);
+    }
+
+    @Override
+    public void showNoDataText() {
+        noData.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNoDataText() {
+        noData.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideMoviesList() {
+        moviesList.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.verify_text)

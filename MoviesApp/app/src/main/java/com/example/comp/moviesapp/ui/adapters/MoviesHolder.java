@@ -64,9 +64,7 @@ class MoviesHolder extends RecyclerView.ViewHolder {
         if (movie != null) {
 
             id = movie.getId();
-            // TODO: 27.11.2017. skontaj kak ide url slike
             String imageURL = Constants.BASE_URL_PATH + movie.getPoster();
-            String imageURL2 = "https://searchengineland.com/figz/wp-content/seloads/2015/08/movie-film-video-production-ss-1920-800x450.jpg";
             ImageUtils.setPicture(movieImage, imageURL);
             movieName.setText(movie.getTitle());
             moviePlot.setText(movie.getPlot());

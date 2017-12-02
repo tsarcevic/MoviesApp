@@ -27,6 +27,12 @@ public interface AllMoviesInterface {
         void showAddDialog(int id);
 
         void navigateToWatchlist();
+
+        void showNoDataText();
+
+        void hideNoDataText();
+
+        void hideMoviesList();
     }
 
     interface Presenter {

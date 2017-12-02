@@ -75,9 +75,13 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
         return new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if (response != null && response.body() != null && response.body().getMoviesList() != null) {
+                if (response != null && response.body() != null && !response.body().getMoviesList().isEmpty()) {
                     moviesList = response.body().getMoviesList();
                     view.showMoviesList(moviesList);
+                    view.hideNoDataText();
+                } else {
+                    view.showNoDataText();
+                    view.hideMoviesList();
                 }
             }
 
