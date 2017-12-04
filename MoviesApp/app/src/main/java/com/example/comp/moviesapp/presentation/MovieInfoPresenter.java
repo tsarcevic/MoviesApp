@@ -54,6 +54,7 @@ public class MovieInfoPresenter implements MovieInfoInterface.Presenter {
 
     private void fetchMovieDataFromDatabase(int intExtra) {
         movie = databaseInterface.getMovieById(intExtra);
+
         if (movie != null) {
             showMovieInfo(movie);
         } else {

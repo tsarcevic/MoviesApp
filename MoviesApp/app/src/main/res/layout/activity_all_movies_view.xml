@@ -36,15 +36,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/film_list"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:text="@string/find_movies" />
-
-        <Button
             android:id="@+id/watchlist_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,6 +43,15 @@
             android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:text="@string/watch_list" />
+
+        <Button
+            android:id="@+id/film_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/find_movies" />
 
     </LinearLayout>
 

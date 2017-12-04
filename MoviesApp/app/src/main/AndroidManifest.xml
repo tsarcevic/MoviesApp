@@ -14,21 +14,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.all_movies.AllMoviesActivity"
-            android:screenOrientation="portrait">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.movie_info.MovieInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.movies_watchlist.WatchListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

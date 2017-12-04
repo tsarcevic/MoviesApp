@@ -44,6 +44,7 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
     @Override
     public void checkInput(String text) {
         String helpString = text.trim();
+
         if (!StringUtils.checkIfStringNotEmpty(helpString)) {
             view.onSearchedTermError();
         } else {
