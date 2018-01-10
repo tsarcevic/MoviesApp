@@ -15,5 +15,5 @@ public interface NetworkInterface {
 
     void getMovieById(Callback<Movie> movieCallback, int id);
 
-    void getMovieByName(Callback<MovieResponse> movieByNameCallback, String movieName);
+    void searchMoviesByName(Callback<MovieResponse> movieByNameCallback, String movieName);
 }

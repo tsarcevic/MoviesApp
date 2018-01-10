@@ -21,5 +21,5 @@ public interface ApiService {
     Call<MovieResponse> getTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("search/movie")
-    Call<MovieResponse> getMovieByName(@Query("api_key") String apiKey, @Query("query") String movieName, @Query("page") int page);
+    Call<MovieResponse> searchMoviesByName(@Query("api_key") String apiKey, @Query("query") String movieName, @Query("page") int page);
 }

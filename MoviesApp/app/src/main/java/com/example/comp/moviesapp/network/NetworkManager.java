@@ -39,7 +39,7 @@ public class NetworkManager implements NetworkInterface {
     }
 
     @Override
-    public void getMovieByName(Callback<MovieResponse> movieByNameCallback, String movieName) {
-        apiService.getMovieByName(Constants.API_KEY, movieName, 1).enqueue(movieByNameCallback);
+    public void searchMoviesByName(Callback<MovieResponse> movieByNameCallback, String movieName) {
+        apiService.searchMoviesByName(Constants.API_KEY, movieName, 1).enqueue(movieByNameCallback);
     }
 }

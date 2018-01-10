@@ -24,7 +24,7 @@
         tools:text="Film title" />
 
     <LinearLayout
-        android:id="@+id/movie_linear"
+        android:id="@+id/movie_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/movie_name"

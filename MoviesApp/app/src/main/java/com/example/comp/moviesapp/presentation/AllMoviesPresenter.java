@@ -59,7 +59,7 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
 
     @Override
     public void onSearchedTermSuccess(String movieName) {
-        networkInterface.getMovieByName(getMovieByNameCallback(), movieName);
+        networkInterface.searchMoviesByName(searchMoviesByNameCallback(), movieName);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
         }
     }
 
-    protected Callback<MovieResponse> getMovieByNameCallback() {
+    protected Callback<MovieResponse> searchMoviesByNameCallback() {
         return new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {

@@ -35,25 +35,25 @@ public class MovieInfoPresenter implements MovieInfoInterface.Presenter {
     }
 
     @Override
-    public void viewReadyFromAllMovies(int intExtra) {
-        if (intExtra != -1) {
-            fetchMovieDataFromApi(intExtra);
+    public void viewReadyFromAllMovies(int movieId) {
+        if (movieId != -1) {
+            fetchMovieDataFromApi(movieId);
         } else {
             view.showNoIdError();
         }
     }
 
     @Override
-    public void viewReadyFromWatchlist(int intExtra) {
-        if (intExtra != -1) {
-            fetchMovieDataFromDatabase(intExtra);
+    public void viewReadyFromWatchlist(int movieId) {
+        if (movieId != -1) {
+            fetchMovieDataFromDatabase(movieId);
         } else {
             view.showNoIdError();
         }
     }
 
-    private void fetchMovieDataFromDatabase(int intExtra) {
-        movie = databaseInterface.getMovieById(intExtra);
+    private void fetchMovieDataFromDatabase(int movieId) {
+        movie = databaseInterface.getMovieById(movieId);
 
         if (movie != null) {
             showMovieInfo(movie);
@@ -62,15 +62,15 @@ public class MovieInfoPresenter implements MovieInfoInterface.Presenter {
         }
     }
 
-    private void fetchMovieDataFromApi(int intExtra) {
-        networkInterface.getMovieById(getMovieCallback(), intExtra);
+    private void fetchMovieDataFromApi(int movieId) {
+        networkInterface.getMovieById(getMovieCallback(), movieId);
     }
 
     protected Callback<Movie> getMovieCallback() {
         return new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                if(response != null && response.body() != null) {
+                if (response != null && response.body() != null) {
                     movie = response.body();
                     showMovieInfo(movie);
                 }
@@ -78,17 +78,19 @@ public class MovieInfoPresenter implements MovieInfoInterface.Presenter {
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                    view.showConnectionError();
+                view.showConnectionError();
             }
         };
     }
 
     private void showMovieInfo(Movie movie) {
-        view.showMoviePicture(movie.getPoster());
-        view.showMovieTitle(movie.getTitle());
-        view.showMoviePlot(movie.getPlot());
-        view.showMovieYear(movie.getYear());
-        view.showMovieVote(movie.getVote_average());
+        if (movie != null) {
+            view.showMoviePicture(movie.getPoster());
+            view.showMovieTitle(movie.getTitle());
+            view.showMoviePlot(movie.getPlot());
+            view.showMovieYear(movie.getYear());
+            view.showMovieVote(movie.getVoteAverage());
+        }
     }
 
     @Override

@@ -56,6 +56,7 @@ public class WatchListPresenter implements WatchListInterface.Presenter {
     @Override
     public void onDeleteClicked(int id) {
         databaseInterface.deleteMovie(id);
+        view.removeMovie(id);
 
         for (Movie movie : moviesList) {
             if (id == movie.getId()) {
@@ -64,6 +65,10 @@ public class WatchListPresenter implements WatchListInterface.Presenter {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onMovieDeleted() {
         view.showMovieDeletedInfo();
     }
 

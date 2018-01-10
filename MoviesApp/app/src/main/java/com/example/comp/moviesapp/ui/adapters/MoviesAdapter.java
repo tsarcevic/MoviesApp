@@ -33,10 +33,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesHolder> implements
         notifyDataSetChanged();
     }
 
-    public List<Movie> getMoviesList() {
-        return moviesList;
-    }
-
     @Override
     public MoviesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -59,5 +55,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesHolder> implements
     @Override
     public int getItemCount() {
         return moviesList.size();
+    }
+
+    public void removeMovie(int id) {
+        for (Movie movie : moviesList) {
+            if (id == movie.getId()) {
+                moviesList.remove(movie);
+                break;
+            }
+        }
+
+        notifyDataSetChanged();
     }
 }

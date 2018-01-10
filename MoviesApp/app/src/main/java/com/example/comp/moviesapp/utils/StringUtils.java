@@ -6,12 +6,11 @@ package com.example.comp.moviesapp.utils;
 
 public class StringUtils {
 
-    public static String getValueOrEmpty(String string) {
+    public static String isStringEmpty(String string) {
         return (string != null) ? string : "";
     }
 
     public static boolean checkIfStringNotEmpty(String text) {
         return text != null && !text.isEmpty();
-
     }
 }

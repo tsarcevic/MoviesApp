@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.comp.moviesapp.R;
+import com.example.comp.moviesapp.constants.Constants;
 import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.database.DatabaseManager;
 import com.example.comp.moviesapp.interfaces.DeleteListener;
@@ -46,15 +47,13 @@ public class WatchListActivity extends AppCompatActivity implements WatchListInt
     MoviesAdapter moviesAdapter;
 
     public static Intent getLaunchIntent(Context from) {
-        Intent intent = new Intent(from, WatchListActivity.class);
-
-        return intent;
+        return new Intent(from, WatchListActivity.class);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watchlist_view);
+        setContentView(R.layout.activity_watchlist);
 
         presenter = new WatchListPresenter(DatabaseManager.getDatabaseInstance());
         presenter.setView(this);
@@ -123,8 +122,13 @@ public class WatchListActivity extends AppCompatActivity implements WatchListInt
 
     @Override
     public void navigateToMovieInfo(int id) {
-        int flagFromWatchlist = 2;
-        startActivity(MovieInfoActivity.getLaunchIntent(this, id, flagFromWatchlist));
+        startActivity(MovieInfoActivity.getLaunchIntent(this, id, Constants.WATCHLIST_MOVIES_FLAG));
+    }
+
+    @Override
+    public void removeMovie(int id) {
+        moviesAdapter.removeMovie(id);
+        presenter.onMovieDeleted();
     }
 
     @Override

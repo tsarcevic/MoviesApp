@@ -16,4 +16,6 @@
     <string name="movie_year">Movie released: %s</string>
     <string name="movie_rating">IMBD rating: %.1f</string>
     <string name="movie_search_error">No data to show!</string>
+    <string name="dialog_positive">Yes</string>
+    <string name="dialog_negative">No</string>
 </resources>

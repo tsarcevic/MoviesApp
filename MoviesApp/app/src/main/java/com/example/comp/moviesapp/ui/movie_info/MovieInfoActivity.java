@@ -52,7 +52,7 @@ public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_info_view);
+        setContentView(R.layout.activity_movie_info);
 
         presenter = new MovieInfoPresenter(NetworkManager.getInstance(), DatabaseManager.getDatabaseInstance());
         presenter.setView(this);
@@ -66,13 +66,11 @@ public class MovieInfoActivity extends AppCompatActivity implements MovieInfoInt
     }
 
     private void getExtras() {
-        if (getIntent().hasExtra(KEY_FLAG_MOVIE_INFO)) {
-            if (getIntent().hasExtra(KEY_ID_MOVIE_INFO)) {
-                if (getIntent().getIntExtra(KEY_FLAG_MOVIE_INFO, -1) == 1) {
-                    presenter.viewReadyFromAllMovies(getIntent().getIntExtra(KEY_ID_MOVIE_INFO, -1));
-                } else {
-                    presenter.viewReadyFromWatchlist(getIntent().getIntExtra(KEY_ID_MOVIE_INFO, -1));
-                }
+        if (getIntent().hasExtra(KEY_FLAG_MOVIE_INFO) && getIntent().hasExtra(KEY_ID_MOVIE_INFO)) {
+            if (getIntent().getIntExtra(KEY_FLAG_MOVIE_INFO, -1) == 1) {
+                presenter.viewReadyFromAllMovies(getIntent().getIntExtra(KEY_ID_MOVIE_INFO, -1));
+            } else {
+                presenter.viewReadyFromWatchlist(getIntent().getIntExtra(KEY_ID_MOVIE_INFO, -1));
             }
         }
     }

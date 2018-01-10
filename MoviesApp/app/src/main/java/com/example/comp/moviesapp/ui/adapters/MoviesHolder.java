@@ -68,7 +68,7 @@ class MoviesHolder extends RecyclerView.ViewHolder {
             ImageUtils.setPicture(movieImage, imageURL);
             movieName.setText(movie.getTitle());
             moviePlot.setText(movie.getPlot());
-            movieRating.setText(String.valueOf(movie.getVote_average()));
+            movieRating.setText(String.valueOf(movie.getVoteAverage()));
             movieYear.setText(movie.getYear());
         }
     }

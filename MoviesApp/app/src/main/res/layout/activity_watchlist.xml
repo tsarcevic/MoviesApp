@@ -1,42 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/toolbar_layout"
+        android:id="@+id/buttons_line_watchlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/search_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="10"
-            android:drawableStart="@drawable/ic_search_button"
-            android:hint="@string/movies_search" />
-
-        <ImageView
-            android:id="@+id/verify_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_verify" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar_layout"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/watchlist_button"
+            android:id="@+id/watchlist"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -59,14 +34,14 @@
         android:id="@+id/movies_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_buttons" />
+        android:layout_below="@id/buttons_line_watchlist" />
 
     <TextView
-        android:id="@+id/no_data_movie_search"
+        android:id="@+id/no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/movie_search_error"
+        android:text="@string/no_movies_database"
         android:visibility="gone" />
 
 </RelativeLayout>

@@ -25,6 +25,8 @@ public interface WatchListInterface {
         void navigateToFilmList();
 
         void hideNoDataText();
+
+        void removeMovie(int id);
     }
 
     interface Presenter {
@@ -40,5 +42,7 @@ public interface WatchListInterface {
         void onDeleteClicked(int id);
 
         void onFilmListClicked();
+
+        void onMovieDeleted();
     }
 }

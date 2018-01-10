@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.comp.moviesapp.R;
+import com.example.comp.moviesapp.constants.Constants;
 import com.example.comp.moviesapp.data.model.Movie;
 import com.example.comp.moviesapp.database.DatabaseManager;
 import com.example.comp.moviesapp.interfaces.AddListener;
@@ -34,7 +35,7 @@ import butterknife.OnClick;
 
 public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInterface.View, MovieClickListener, AddListener {
 
-    @BindView(R.id.verify_text)
+    @BindView(R.id.verify_text_button)
     ImageView verifyText;
 
     @BindView(R.id.search_button)
@@ -59,15 +60,13 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     AllMoviesInterface.Presenter presenter;
 
     public static Intent getLaunchIntent(Context from) {
-        Intent intent = new Intent(from, AllMoviesActivity.class);
-
-        return intent;
+        return new Intent(from, AllMoviesActivity.class);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_movies_view);
+        setContentView(R.layout.activity_all_movies);
 
         setUI();
 
@@ -111,7 +110,7 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
         moviesList.setVisibility(View.GONE);
     }
 
-    @OnClick(R.id.verify_text)
+    @OnClick(R.id.verify_text_button)
     public void onVerifyClicked() {
         presenter.checkInput(searchText.getText().toString());
     }
@@ -163,8 +162,7 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     @Override
     public void navigateToMovieInfo(int id) {
-        int flagFromAllMovies = 1;
-        startActivity(MovieInfoActivity.getLaunchIntent(this, id, flagFromAllMovies));
+        startActivity(MovieInfoActivity.getLaunchIntent(this, id, Constants.ALL_MOVIES_FLAG));
     }
 
     @Override

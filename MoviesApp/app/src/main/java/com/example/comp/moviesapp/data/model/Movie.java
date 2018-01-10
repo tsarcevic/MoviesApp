@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
+import static com.example.comp.moviesapp.utils.StringUtils.isStringEmpty;
+
 /**
  * Created by COMP on 16.11.2017..
  */
@@ -18,18 +20,19 @@ public class Movie extends RealmObject {
     private String plot;
     @SerializedName("poster_path")
     private String poster;
-    private double vote_average;
+    @SerializedName("vote_average")
+    private double voteAverage;
 
     public Movie() {
     }
 
-    public Movie(int id, String title, String year, String plot, String poster, double vote_average) {
+    public Movie(int id, String title, String year, String plot, String poster, double voteAverage) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.plot = plot;
         this.poster = poster;
-        this.vote_average = vote_average;
+        this.voteAverage = voteAverage;
     }
 
     public int getId() {
@@ -37,22 +40,22 @@ public class Movie extends RealmObject {
     }
 
     public String getTitle() {
-        return title;
+        return isStringEmpty(title);
     }
 
     public String getYear() {
-        return year;
+        return isStringEmpty(year);
     }
 
     public String getPlot() {
-        return plot;
+        return isStringEmpty(plot);
     }
 
     public String getPoster() {
-        return poster;
+        return isStringEmpty(poster);
     }
 
-    public double getVote_average() {
-        return vote_average;
+    public double getVoteAverage() {
+        return voteAverage;
     }
 }
