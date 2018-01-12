@@ -22,7 +22,7 @@ public interface WatchListInterface {
 
         void showMovieDeletedInfo();
 
-        void navigateToFilmList();
+        //void navigateToFilmList();
 
         void hideNoDataText();
 
@@ -41,7 +41,7 @@ public interface WatchListInterface {
 
         void onDeleteClicked(int id);
 
-        void onFilmListClicked();
+        //void onFilmListClicked();
 
         void onMovieDeleted();
     }

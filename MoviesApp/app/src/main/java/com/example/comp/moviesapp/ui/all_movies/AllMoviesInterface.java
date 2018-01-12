@@ -26,7 +26,7 @@ public interface AllMoviesInterface {
 
         void showAddDialog(int id);
 
-        void navigateToWatchlist();
+        //void navigateToWatchlist();
 
         void showNoDataText();
 
@@ -53,6 +53,6 @@ public interface AllMoviesInterface {
 
         void onSearchedTermSuccess(String movieName);
 
-        void watchlistClicked();
+        //void watchlistClicked();
     }
 }

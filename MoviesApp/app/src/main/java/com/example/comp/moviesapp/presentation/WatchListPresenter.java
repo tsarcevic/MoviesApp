@@ -72,8 +72,8 @@ public class WatchListPresenter implements WatchListInterface.Presenter {
         view.showMovieDeletedInfo();
     }
 
-    @Override
+    /*@Override
     public void onFilmListClicked() {
         view.navigateToFilmList();
-    }
+    }*/
 }

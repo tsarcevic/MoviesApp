@@ -125,8 +125,8 @@ public class AllMoviesPresenter implements AllMoviesInterface.Presenter {
         view.showAddDialog(id);
     }
 
-    @Override
+    /*@Override
     public void watchlistClicked() {
         view.navigateToWatchlist();
-    }
+    }*/
 }

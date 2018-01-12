@@ -1,13 +1,13 @@
 package com.example.comp.moviesapp.ui.all_movies;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +23,6 @@ import com.example.comp.moviesapp.network.NetworkManager;
 import com.example.comp.moviesapp.presentation.AllMoviesPresenter;
 import com.example.comp.moviesapp.ui.adapters.MoviesAdapter;
 import com.example.comp.moviesapp.ui.movie_info.MovieInfoActivity;
-import com.example.comp.moviesapp.ui.movies_watchlist.WatchListActivity;
 import com.example.comp.moviesapp.utils.DialogUtils;
 
 import java.util.List;
@@ -33,19 +32,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInterface.View, MovieClickListener, AddListener {
+/**
+ * Created by COMP on 10.1.2018..
+ */
+
+public class AllMoviesFragment extends Fragment implements AllMoviesInterface.View, MovieClickListener, AddListener {
 
     @BindView(R.id.verify_text_button)
     ImageView verifyText;
 
     @BindView(R.id.search_button)
     EditText searchText;
-
-    @BindView(R.id.film_list)
-    Button filmList;
-
-    @BindView(R.id.watchlist_button)
-    Button watchList;
 
     @BindView(R.id.no_data_movie_search)
     TextView noData;
@@ -59,31 +56,34 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
     MoviesAdapter moviesAdapter;
     AllMoviesInterface.Presenter presenter;
 
-    public static Intent getLaunchIntent(Context from) {
-        return new Intent(from, AllMoviesActivity.class);
+    public static AllMoviesFragment newInstance() {
+        return new AllMoviesFragment();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_all_movies, container, false);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_movies);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        setUI();
+        setUI(view);
 
         presenter = new AllMoviesPresenter(NetworkManager.getInstance(), DatabaseManager.getDatabaseInstance());
         presenter.setView(this);
         presenter.viewReady();
     }
 
-    private void setUI() {
-        ButterKnife.bind(this);
-
-        filmList.setClickable(false);
+    private void setUI(View view) {
+        ButterKnife.bind(this, view);
 
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setMovieClickListener(this);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         moviesList.setLayoutManager(layoutManager);
         moviesList.setAdapter(moviesAdapter);
@@ -122,17 +122,12 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     @Override
     public void showConnectionError() {
-        Toast.makeText(this, R.string.connection_error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.connection_error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showAddDialog(int id) {
-        DialogUtils.showAddDialog(this, id, this);
-    }
-
-    @OnClick(R.id.watchlist_button)
-    public void watchlistClicked() {
-        presenter.watchlistClicked();
+        DialogUtils.showAddDialog(getActivity(), id, this);
     }
 
     @Override
@@ -157,16 +152,11 @@ public class AllMoviesActivity extends AppCompatActivity implements AllMoviesInt
 
     @Override
     public void movieAdded() {
-        Toast.makeText(this, R.string.movie_added, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.movie_added, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void navigateToMovieInfo(int id) {
-        startActivity(MovieInfoActivity.getLaunchIntent(this, id, Constants.ALL_MOVIES_FLAG));
-    }
-
-    @Override
-    public void navigateToWatchlist() {
-        startActivity(WatchListActivity.getLaunchIntent(this));
+        startActivity(MovieInfoActivity.getLaunchIntent(getActivity(), id, Constants.ALL_MOVIES_FLAG));
     }
 }
